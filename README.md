@@ -1,6 +1,6 @@
 - 👋 Hi, I’m @aleksFedotov
 - 👀 I’m interested in web development
-- 🌱 I’m currently learning css and js
+- 🌱 I’m currently learning React
 
 
 <!---
