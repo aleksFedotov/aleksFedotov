@@ -1,11 +1,9 @@
 <h1 align="center">Hi 👋, I'm Aleksandr</h1>
 <h3 align="center">A passionate frontend developer</h3>
 
-- 🌱 I’m currently learning **Next JS, Typescript, React Testing Library**
+- 🌱 I’m currently learning **Svetle**
 
 - 👨‍💻 All of my projects are available at [https://www.frontendmentor.io/profile/aleksFedotov](https://www.frontendmentor.io/profile/aleksFedotov)
-
-- 💬 Ask me about **HTML, CSS, JavaScript**
 
 - 📫 How to reach me **aleksfedotov.dev@gmail.com**
 
