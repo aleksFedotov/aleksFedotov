@@ -14,7 +14,7 @@
 
 <p>&nbsp;<img align="center" src="https://github-readme-stats-sigma-five.vercel.app/api?username=aleksFedotov&show_icons=true&theme=dark&locale=en" alt="aleksFedotov" /></p>
 
-<p><img align="center" src="http://github-readme-streak-stats-sigma-five.herokuapp.com?user=aleksFedotov" alt="aleksFedotov" /></p>
+<p><img align="center" src="http://github-readme-streak-stats.herokuapp.com?user=aleksFedotov" alt="aleksFedotov" /></p>
 
 
 
