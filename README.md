@@ -26,7 +26,6 @@
   
 <div align="center">
   
-🌱 I’m currently learning **Svetle** **Tailwind** 
 
 👨‍💻 All of my projects are available at [my profile](https://www.frontendmentor.io/profile/aleksFedotov) at frontend mentor
 
