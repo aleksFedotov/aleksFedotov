@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#0d1117" rx="6"/>
+  <text x="20" y="30" fill="#00ff00" font-family="monospace" font-size="16" font-weight="bold">aleksFedotov@github:~$ neofetch</text>
+  <text x="20" y="60" fill="#00ff00" font-family="monospace" font-size="14">OS: Hobby Developer</text>
+  <text x="20" y="85" fill="#00ff00" font-family="monospace" font-size="14">Repos: 68</text>
+  <text x="20" y="110" fill="#00ff00" font-family="monospace" font-size="14">Stars: 45</text>
+  <text x="20" y="135" fill="#00ff00" font-family="monospace" font-size="14">Forks: 17</text>
+  <text x="20" y="160" fill="#00ff00" font-family="monospace" font-size="14">Followers: 37</text>
+  <text x="20" y="185" fill="#00ff00" font-family="monospace" font-size="14">Location: Saint Petersburg</text>
+</svg>
