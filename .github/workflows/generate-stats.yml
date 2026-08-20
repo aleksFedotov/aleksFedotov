@@ -80,4 +80,18 @@ jobs:
             <text x="20" y="210" fill="#00ff00" font-family="monospace" font-size="14">Languages: {langs_str}</text>
             <text x="20" y="240" fill="#00ff00" font-family="monospace" font-size="16" font-weight="bold">aleksFedotov@github:~$</text>
             <rect x="245" y="228" width="10" height="16" fill="#00ff00" class="cursor" />
-          </svg
+          </svg>'''
+
+          os.makedirs("generated", exist_ok=True)
+          with open("generated/stats.svg", "w") as f:
+              f.write(svg)
+
+          print("Stats generated!")
+          EOF
+          
+      - name: Commit and push
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: 'generated/'
+          message: 'Update terminal stats'
+          default_author: github_actions
