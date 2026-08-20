@@ -45,9 +45,30 @@ jobs:
           forks = sum(r["forks_count"] for r in repos_data)
           total_repos = len(repos_data)
 
-          # Generate SVG
+          # Get languages
+          languages = {}
+          for repo in repos_data:
+              if repo["language"] and not repo["fork"]:
+                  lang = repo["language"]
+                  languages[lang] = languages.get(lang, 0) + 1
+
+          top_langs = sorted(languages.items(), key=lambda x: x[1], reverse=True)[:5]
+          langs_str = ", ".join([f"{lang} ({count})" for lang, count in top_langs])
+
+          # Generate SVG with blinking cursor
           svg = f'''<?xml version="1.0" encoding="UTF-8"?>
-          <svg width="500" height="200" xmlns="http://www.w3.org/2000/svg">
+          <svg width="500" height="260" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <style>
+                .cursor {{
+                  animation: blink 1s step-end infinite;
+                }}
+                @keyframes blink {{
+                  0%, 100% {{ opacity: 1; }}
+                  50% {{ opacity: 0; }}
+                }}
+              </style>
+            </defs>
             <rect width="100%" height="100%" fill="#0d1117" rx="6"/>
             <text x="20" y="30" fill="#00ff00" font-family="monospace" font-size="16" font-weight="bold">aleksFedotov@github:~$ neofetch</text>
             <text x="20" y="60" fill="#00ff00" font-family="monospace" font-size="14">OS: Hobby Developer</text>
@@ -56,18 +77,7 @@ jobs:
             <text x="20" y="135" fill="#00ff00" font-family="monospace" font-size="14">Forks: {forks}</text>
             <text x="20" y="160" fill="#00ff00" font-family="monospace" font-size="14">Followers: {user_data.get('followers', 0)}</text>
             <text x="20" y="185" fill="#00ff00" font-family="monospace" font-size="14">Location: {user_data.get('location', 'Unknown')}</text>
-          </svg>'''
-
-          os.makedirs("generated", exist_ok=True)
-          with open("generated/stats.svg", "w") as f:
-              f.write(svg)
-
-          print("Stats generated!")
-          EOF
-          
-      - name: Commit and push
-        uses: EndBug/add-and-commit@v9
-        with:
-          add: 'generated/'
-          message: 'Update terminal stats'
-          default_author: github_actions
+            <text x="20" y="210" fill="#00ff00" font-family="monospace" font-size="14">Languages: {langs_str}</text>
+            <text x="20" y="240" fill="#00ff00" font-family="monospace" font-size="16" font-weight="bold">aleksFedotov@github:~$</text>
+            <rect x="245" y="228" width="10" height="16" fill="#00ff00" class="cursor" />
+          </svg
