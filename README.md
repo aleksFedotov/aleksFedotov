@@ -8,6 +8,11 @@
 
 <br><br>
 
+<!-- Pixel Art MarioCoder -->
+<img src="https://github.com/user-attachments/assets/db1f70a4-c525-4e6f-b55e-ac8fe4e991b8" width="400" />
+
+<br><br>
+
 <!-- Green line divider -->
 <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" width="100%" />
 
@@ -18,8 +23,8 @@
 
 <br><br>
 
-<!-- Terminal Stats with Languages and Blinking Cursor -->
-<img src="generated/stats.svg" />
+<!-- Local Stats SVG with cache-buster -->
+<img src="generated/stats.svg?v=2" />
 
 <br><br>
 
