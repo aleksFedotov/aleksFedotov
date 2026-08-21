@@ -26,7 +26,7 @@
 <br><br>
 
 <!-- Local Stats SVG with cache-buster -->
-<img src="generated/stats.svg?v=2" />
+<img src="generated/stats.svg?v=3" />
 
 <br><br>
 
