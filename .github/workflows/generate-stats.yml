@@ -29,6 +29,7 @@ jobs:
           python << 'EOF'
           import requests
           import os
+          from datetime import datetime
 
           USERNAME = "aleksFedotov"
           TOKEN = os.environ["GITHUB_TOKEN"]
@@ -55,9 +56,60 @@ jobs:
           top_langs = sorted(languages.items(), key=lambda x: x[1], reverse=True)[:5]
           langs_str = ", ".join([f"{lang} ({count})" for lang, count in top_langs])
 
+          # Get contribution streak (simplified calculation)
+          # Get events to calculate current streak
+          events_resp = requests.get(
+              f"https://api.github.com/users/{USERNAME}/events?per_page=100", 
+              headers=HEADERS
+          )
+          events = events_resp.json()
+
+          # Calculate current streak from push events
+          from collections import defaultdict
+          import datetime
+
+          commit_days = set()
+          for event in events:
+              if event.get("type") == "PushEvent":
+                  date_str = event.get("created_at", "")[:10]
+                  if date_str:
+                      commit_days.add(date_str)
+
+          # Calculate current streak
+          today = datetime.date.today()
+          current_streak = 0
+          check_date = today
+
+          while True:
+              date_str = check_date.strftime("%Y-%m-%d")
+              if date_str in commit_days:
+                  current_streak += 1
+                  check_date -= datetime.timedelta(days=1)
+              else:
+                  # Check if today has no commits yet (it's still early)
+                  if check_date == today and today.strftime("%Y-%m-%d") not in commit_days:
+                      check_date -= datetime.timedelta(days=1)
+                      continue
+                  break
+
+          # Calculate longest streak (simplified)
+          sorted_days = sorted(commit_days, reverse=True)
+          longest_streak = 0
+          temp_streak = 0
+          prev_date = None
+
+          for day_str in sorted_days:
+              day = datetime.datetime.strptime(day_str, "%Y-%m-%d").date()
+              if prev_date and (prev_date - day).days == 1:
+                  temp_streak += 1
+              else:
+                  temp_streak = 1
+              longest_streak = max(longest_streak, temp_streak)
+              prev_date = day
+
           # Generate SVG with blinking cursor
           svg = f'''<?xml version="1.0" encoding="UTF-8"?>
-          <svg width="500" height="260" xmlns="http://www.w3.org/2000/svg">
+          <svg width="520" height="290" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <style>
                 .cursor {{
@@ -78,8 +130,10 @@ jobs:
             <text x="20" y="160" fill="#00ff00" font-family="monospace" font-size="14">Followers: {user_data.get('followers', 0)}</text>
             <text x="20" y="185" fill="#00ff00" font-family="monospace" font-size="14">Location: {user_data.get('location', 'Unknown')}</text>
             <text x="20" y="210" fill="#00ff00" font-family="monospace" font-size="14">Languages: {langs_str}</text>
-            <text x="20" y="240" fill="#00ff00" font-family="monospace" font-size="16" font-weight="bold">aleksFedotov@github:~$</text>
-            <rect x="245" y="228" width="10" height="16" fill="#00ff00" class="cursor" />
+            <text x="20" y="235" fill="#00ff00" font-family="monospace" font-size="14">Current Streak: {current_streak} days</text>
+            <text x="20" y="260" fill="#00ff00" font-family="monospace" font-size="14">Longest Streak: {longest_streak} days</text>
+            <text x="20" y="285" fill="#00ff00" font-family="monospace" font-size="16" font-weight="bold">aleksFedotov@github:~$</text>
+            <rect x="245" y="273" width="10" height="16" fill="#00ff00" class="cursor" />
           </svg>'''
 
           os.makedirs("generated", exist_ok=True)
@@ -87,11 +141,13 @@ jobs:
               f.write(svg)
 
           print("Stats generated!")
+          print(f"Current streak: {current_streak}")
+          print(f"Longest streak: {longest_streak}")
           EOF
           
       - name: Commit and push
         uses: EndBug/add-and-commit@v9
         with:
           add: 'generated/'
-          message: 'Update terminal stats'
+          message: 'Update terminal stats with streak info'
           default_author: github_actions
