@@ -109,7 +109,7 @@ jobs:
 
           # Generate SVG with blinking cursor
           svg = f'''<?xml version="1.0" encoding="UTF-8"?>
-          <svg width="520" height="290" xmlns="http://www.w3.org/2000/svg">
+          <svg width="100%" height="290" viewBox="0 0 800 290" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
             <defs>
               <style>
                 .cursor {{
@@ -122,18 +122,18 @@ jobs:
               </style>
             </defs>
             <rect width="100%" height="100%" fill="#0d1117" rx="6"/>
-            <text x="20" y="30" fill="#00ff00" font-family="monospace" font-size="16" font-weight="bold">aleksFedotov@github:~$ neofetch</text>
-            <text x="20" y="60" fill="#00ff00" font-family="monospace" font-size="14">OS: Hobby Developer</text>
-            <text x="20" y="85" fill="#00ff00" font-family="monospace" font-size="14">Repos: {total_repos}</text>
-            <text x="20" y="110" fill="#00ff00" font-family="monospace" font-size="14">Stars: {stars}</text>
-            <text x="20" y="135" fill="#00ff00" font-family="monospace" font-size="14">Forks: {forks}</text>
-            <text x="20" y="160" fill="#00ff00" font-family="monospace" font-size="14">Followers: {user_data.get('followers', 0)}</text>
-            <text x="20" y="185" fill="#00ff00" font-family="monospace" font-size="14">Location: {user_data.get('location', 'Unknown')}</text>
-            <text x="20" y="210" fill="#00ff00" font-family="monospace" font-size="14">Languages: {langs_str}</text>
-            <text x="20" y="235" fill="#00ff00" font-family="monospace" font-size="14">Current Streak: {current_streak} days</text>
-            <text x="20" y="260" fill="#00ff00" font-family="monospace" font-size="14">Longest Streak: {longest_streak} days</text>
-            <text x="20" y="285" fill="#00ff00" font-family="monospace" font-size="16" font-weight="bold">aleksFedotov@github:~$</text>
-            <rect x="245" y="273" width="10" height="16" fill="#00ff00" class="cursor" />
+            <text x="40" y="30" fill="#00ff00" font-family="monospace" font-size="16" font-weight="bold">aleksFedotov@github:~$ neofetch</text>
+            <text x="40" y="60" fill="#00ff00" font-family="monospace" font-size="14">OS: Hobby Developer</text>
+            <text x="40" y="85" fill="#00ff00" font-family="monospace" font-size="14">Repos: {total_repos}</text>
+            <text x="40" y="110" fill="#00ff00" font-family="monospace" font-size="14">Stars: {stars}</text>
+            <text x="40" y="135" fill="#00ff00" font-family="monospace" font-size="14">Forks: {forks}</text>
+            <text x="40" y="160" fill="#00ff00" font-family="monospace" font-size="14">Followers: {user_data.get('followers', 0)}</text>
+            <text x="40" y="185" fill="#00ff00" font-family="monospace" font-size="14">Location: {user_data.get('location', 'Unknown')}</text>
+            <text x="40" y="210" fill="#00ff00" font-family="monospace" font-size="14">Languages: {langs_str}</text>
+            <text x="40" y="235" fill="#00ff00" font-family="monospace" font-size="14">Current Streak: {current_streak} days</text>
+            <text x="40" y="260" fill="#00ff00" font-family="monospace" font-size="14">Longest Streak: {longest_streak} days</text>
+            <text x="40" y="285" fill="#00ff00" font-family="monospace" font-size="16" font-weight="bold">aleksFedotov@github:~$</text>
+            <rect x="265" y="273" width="10" height="16" fill="#00ff00" class="cursor" />
           </svg>'''
 
           os.makedirs("generated", exist_ok=True)
