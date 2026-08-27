@@ -8,6 +8,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: terminal-stats
+  cancel-in-progress: false
+
 jobs:
   generate:
     runs-on: ubuntu-latest
@@ -145,6 +149,13 @@ jobs:
           print(f"Current streak: {current_streak}")
           print(f"Longest streak: {longest_streak}")
           EOF
+
+      - name: Sync with remote main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git rebase origin/main
 
       - name: Commit and push
         uses: EndBug/add-and-commit@v9
